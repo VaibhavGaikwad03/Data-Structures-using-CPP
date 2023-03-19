@@ -251,10 +251,10 @@ int LinkedList::delete_at_position(int iPos)
     Node *pTemp = NULL;
     Node *pTempDelete = NULL;
 
-    if(iPos < 1 || iPos > m_iCount)
+    if (iPos < 1 || iPos > m_iCount)
         return -1;
 
-    if(iPos == 1)
+    if (iPos == 1)
         return delete_first();
 
     pTemp = m_pHead;
@@ -281,15 +281,15 @@ int LinkedList::search_first_occurrence(int iKey)
 
     pTemp = m_pHead;
 
-    while(pTemp != NULL)
+    while (pTemp != NULL)
     {
         iCountPos++;
-        if(pTemp->m_iData == iKey)
+        if (pTemp->m_iData == iKey)
             break;
         pTemp = pTemp->m_pNext;
     }
 
-    if(pTemp == NULL)
+    if (pTemp == NULL)
         return 0;
 
     return iCountPos;
@@ -303,10 +303,10 @@ int LinkedList::search_last_occurrence(int iKey)
 
     pTemp = m_pHead;
 
-    while(pTemp != NULL)
+    while (pTemp != NULL)
     {
         iCountPos++;
-        if(pTemp->m_iData == iKey)
+        if (pTemp->m_iData == iKey)
             iRetCount = iCountPos;
         pTemp = pTemp->m_pNext;
     }
@@ -321,9 +321,9 @@ int LinkedList::search_all_occurrences(int iKey)
 
     pTemp = m_pHead;
 
-    while(pTemp != NULL)
+    while (pTemp != NULL)
     {
-        if(pTemp->m_iData == iKey)
+        if (pTemp->m_iData == iKey)
             iCountOcc++;
         pTemp = pTemp->m_pNext;
     }
@@ -334,10 +334,10 @@ int LinkedList::search_all_occurrences(int iKey)
 // {
 //     Node *pTemp = NULL;
 
-//     if(pList->m_pHead == NULL)
+//     if (pList->m_pHead == NULL)
 //         return;
 
-//     if(m_pHead == NULL)
+//     if (m_pHead == NULL)
 //     {
 //         m_pHead = pList->m_pHead;
 //         pList->m_pHead = NULL;
@@ -346,7 +346,7 @@ int LinkedList::search_all_occurrences(int iKey)
 
 //     pTemp = m_pHead;
 
-//     while(pTemp->m_pNext != NULL)
+//     while (pTemp->m_pNext != NULL)
 //         pTemp = pTemp->m_pNext;
 
 //     pTemp->m_pNext = pList->m_pHead;
@@ -359,10 +359,10 @@ void LinkedList::concat_list(LinkedList &pList)
 {
     Node *pTemp = NULL;
 
-    if(pList.m_pHead == NULL)
+    if (pList.m_pHead == NULL)
         return;
 
-    if(m_pHead == NULL)
+    if (m_pHead == NULL)
     {
         m_pHead = pList.m_pHead;
         pList.m_pHead = NULL;
@@ -371,7 +371,7 @@ void LinkedList::concat_list(LinkedList &pList)
 
     pTemp = m_pHead;
 
-    while(pTemp->m_pNext != NULL)
+    while (pTemp->m_pNext != NULL)
         pTemp = pTemp->m_pNext;
 
     pTemp->m_pNext = pList.m_pHead;
@@ -385,16 +385,16 @@ void LinkedList::concat_list(LinkedList &pList)
 //     Node *pTemp1 = NULL;
 //     Node *pTemp2 = NULL;
 
-//     if(iPos < 1 || iPos > m_iCount+1)
+//     if (iPos < 1 || iPos > m_iCount + 1)
 //     {
 //         cout << "Position is invalid\n";
 //         return;
 //     }
 
-//     if(pList->m_pHead == NULL)
+//     if (pList->m_pHead == NULL)
 //         return;
 
-//     if(iPos == 1)
+//     if (iPos == 1)
 //     {
 //         pList->concat_list(*this);
 //         m_pHead = pList->m_pHead;
@@ -427,16 +427,16 @@ void LinkedList::concat_at_position(LinkedList &pList, int iPos)
     Node *pTemp1 = NULL;
     Node *pTemp2 = NULL;
 
-    if(iPos < 1 || iPos > m_iCount+1)
+    if (iPos < 1 || iPos > m_iCount + 1)
     {
         cout << "Position is invalid\n";
         return;
     }
 
-    if(pList.m_pHead == NULL)
+    if (pList.m_pHead == NULL)
         return;
 
-    if(iPos == 1)
+    if (iPos == 1)
     {
         pList.concat_list(*this);
         m_pHead = pList.m_pHead;
