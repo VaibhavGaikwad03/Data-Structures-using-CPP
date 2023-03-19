@@ -509,7 +509,7 @@ void LinkedList::delete_all()
     pTemp = NULL;
 }
 
-ostream &operator << (ostream &out, LinkedList &refObj)
+ostream &operator<<(ostream &out, LinkedList &refObj)
 {
     Node *pTemp = refObj.m_pHead;
 
@@ -551,17 +551,11 @@ int main()
 
         case 2:
             cout << "Enter the data : \n";
-            
-            iCheckData = scanf("%d", &iData);
-            if (iCheckData != 0)
-            {
-                insertLast(&pFirst, iData);
-                display(pFirst);
-            }
-            else
-            {
-                printf("\nPlease enter only integer values. Non-integer values will cause errors in the program.\n");
-            }
+            cout << iData;
+
+            list1.insert_last(iData);
+            cout << "Data from the linked list : " << list1 << endl;
+
             break;
 
         case 3:
