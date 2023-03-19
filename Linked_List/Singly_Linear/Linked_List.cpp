@@ -580,7 +580,7 @@ int main()
 
         case 4:
             iDeletedData = list1.delete_first();
-            
+
             if (iDeletedData != -1)
             {
                 cout << "\nList is empty.\n";
@@ -606,117 +606,177 @@ int main()
             break;
 
         case 6:
-            if (pFirst == NULL)
+
+            cout << "\nEnter the position : \n";
+            cin >> iPos;
+
+            iCount = list1.count_nodes();
+
+            if (iPos < 1 || iPos > iCount)
             {
-                printf("\nList is empty.\n");
+                printf("\nERROR: Position is invalid.\n");
+                continue;
             }
-            else
-            {
-                printf("Enter the position : \n");
-                scanf("%d", &iPos);
-                iCount = countNodes(pFirst);
-                if (iPos < 1 || iPos > iCount)
-                {
-                    printf("\nERROR: Position is invalid.\n");
-                }
-                else
-                {
-                    iDeletedData = deleteAtPosition(&pFirst, iPos);
-                    display(pFirst);
-                    printf("Deleted data is : %d\n", iDeletedData);
-                }
-            }
+
+            iDeletedData = list1.delete_at_position(iPos);
+
+            cout << "\nDeleted data is : " << iDeletedData << endl;
+            cout << "\nData from the linked list : " << list1 << endl;
+
             break;
 
         case 7:
-            if (pFirst == NULL)
-            {
-                printf("\nList is empty.\n");
-            }
+
+            cout << "\nPlease enter the data that you would like to search for :\n";
+            cin >> iData;
+
+            iOccurrence = list1.search_first_occurrence(iData);
+
+            if (iOccurrence != 0)
+                cout << "\nFirst occurrence of" << iData << "is at position" << iOccurrence << endl;
+
             else
-            {
-                printf("\nPlease enter the data that you would like to search for :\n");
-                iCheckData = scanf("%d", &iData);
+                cout << endl
+                     << iData << " not found\n";
 
-                if (iCheckData != 0)
-                {
-                    iOccurrence = searchFirstOccurrence(pFirst, iData);
-
-                    if (iOccurrence != 0)
-                    {
-                        printf("\nFirst occurrence of %d is at position %d.\n", iData, iOccurrence);
-                    }
-                    else
-                    {
-                        printf("\n%d not found.\n", iData);
-                    }
-                }
-                else
-                {
-                    printf("\nPlease enter only integer values. Non-integer values will cause errors in the program.\n");
-                }
-            }
             break;
 
         case 8:
-            if (pFirst == NULL)
-            {
-                printf("\nList is empty.\n");
-            }
+            cout << "\nPlease enter the data that you would like to search for :\n";
+            cin >> iData;
+
+            iOccurrence = list1.search_last_occurrence(iData);
+
+            if (iOccurrence != 0)
+                cout << "\nLast occurrence of" << iData << "is at position" << iOccurrence << endl;
+
             else
-            {
-                printf("\nPlease enter the data that you would like to search for :\n");
-                iCheckData = scanf("%d", &iData);
+                cout << endl
+                     << iData << " not found\n";
 
-                if (iCheckData != 0)
-                {
-                    iOccurrence = searchLastOccurrence(pFirst, iData);
-
-                    if (iOccurrence != 0)
-                    {
-                        printf("\nLast occurrence of %d is at position %d\n", iData, iOccurrence);
-                    }
-                    else
-                    {
-                        printf("\n%d not found.\n", iData);
-                    }
-                }
-                else
-                {
-                    printf("\nPlease enter only integer values. Non-integer values will cause errors in the program.\n");
-                }
-            }
             break;
 
         case 9:
-            if (pFirst == NULL)
-            {
-                printf("\nList is empty.\n");
-            }
-            else
-            {
-                printf("\nPlease enter the data that you would like to search for :\n");
-                iCheckData = scanf("%d", &iData);
+            cout << "\nPlease enter the data that you would like to search for :\n";
+            cin >> iData;
 
-                if (iCheckData != 0)
-                {
-                    iOccurrence = searchAllOccurrences(pFirst, iData);
+            iOccurrence = list1.search_all_occurrences(iData);
 
-                    printf("\n%d Occurred %d times\n", iData, iOccurrence);
-                }
-                else
-                {
-                    printf("\nPlease enter only integer values. Non-integer values will cause errors in the program.\n");
-                }
-            }
+            cout << endl
+                 << iData << "Occurred " << iOccurrence << " times\n";
+
             break;
 
         case 10:
-            iCount = countNodes(pFirst);
-            printf("\nCount of nodes is : %d\n", iCount);
+            iCount = list1.count_nodes();
+            cout << "\nCount of nodes is : " << iCount << endl;
+
             break;
 
         case 11:
+            while (1)
+            {
+                cout << "\n1. Insert First\n2. Insert Last\n3. Insert At Position\n4. Delete At Position\n5. Back\n>_";
+                cin >> iChoice;
+
+                switch (iChoice)
+                {
+                case 1:
+                    cout << "Enter the data : \n";
+                    cin >> iData;
+
+                    insertFirst(&pSecond, iData);
+                    display(pSecond);
+
+                    break;
+
+                case 2:
+                    printf("Enter the data : \n");
+                    iCheckData = scanf("%d", &iData);
+                    if (iCheckData != 0)
+                    {
+                        insertLast(&pSecond, iData);
+                        display(pSecond);
+                    }
+                    else
+                    {
+                        printf("\nPlease enter only integer values. Non-integer values will cause errors in the program.\n");
+                    }
+                    break;
+
+                case 3:
+                    iPos = 0;
+                    printf("Enter the Position : \n");
+                    scanf("%d", &iPos);
+                    iCount = countNodes(pSecond);
+                    if (iPos < 1 || iPos > iCount + 1)
+                    {
+                        printf("\nERROR: Position is invalid.\n");
+                    }
+                    else
+                    {
+                        printf("Enter the data : \n");
+                        iCheckData = scanf("%d", &iData);
+                        if (iCheckData != 0)
+                        {
+                            insertAtPosition(&pSecond, iData, iPos);
+                            display(pSecond);
+                        }
+                        else
+                        {
+                            printf("\nPlease enter only integer values. Non-integer values will cause errors in the program.\n");
+                        }
+                    }
+                    break;
+
+                case 4:
+                    if (pSecond == NULL)
+                    {
+                        printf("\nList is empty.\n");
+                    }
+                    else
+                    {
+                        printf("Enter the position : \n");
+                        scanf("%d", &iPos);
+                        iCount = countNodes(pSecond);
+                        if (iPos < 1 || iPos > iCount)
+                        {
+                            printf("\nERROR: Position is invalid.\n");
+                        }
+                        else
+                        {
+                            iDeletedData = deleteAtPosition(&pSecond, iPos);
+                            display(pSecond);
+                            printf("Deleted data is : %d\n", iDeletedData);
+                        }
+                    }
+                    break;
+
+                case 5:
+                    concatList(&pFirst, &pSecond);
+                    display(pFirst);
+                    goto out;
+                    break;
+
+                default:
+                    printf("\nERROR: Invalid option selected.\n");
+                    break;
+                }
+            }
+        }
+        break;
+
+    case 12:
+        iCount = countNodes(pFirst);
+        printf("Enter the Position : \n");
+        scanf("%d", &iPos);
+
+        if (iPos < 1 || iPos > iCount + 1)
+        {
+            printf("\nERROR: Position is invalid.\n");
+        }
+        else
+        {
             while (1)
             {
                 fflush(stdin);
@@ -757,11 +817,10 @@ int main()
                         break;
 
                     case 3:
-                        iPos = 0;
                         printf("Enter the Position : \n");
-                        scanf("%d", &iPos);
+                        scanf("%d", &iPosition);
                         iCount = countNodes(pSecond);
-                        if (iPos < 1 || iPos > iCount + 1)
+                        if (iPosition < 1 || iPosition > iCount + 1)
                         {
                             printf("\nERROR: Position is invalid.\n");
                         }
@@ -771,7 +830,7 @@ int main()
                             iCheckData = scanf("%d", &iData);
                             if (iCheckData != 0)
                             {
-                                insertAtPosition(&pSecond, iData, iPos);
+                                insertAtPosition(&pSecond, iData, iPosition);
                                 display(pSecond);
                             }
                             else
@@ -789,15 +848,15 @@ int main()
                         else
                         {
                             printf("Enter the position : \n");
-                            scanf("%d", &iPos);
+                            scanf("%d", &iPosition);
                             iCount = countNodes(pSecond);
-                            if (iPos < 1 || iPos > iCount)
+                            if (iPosition < 1 || iPosition > iCount)
                             {
                                 printf("\nERROR: Position is invalid.\n");
                             }
                             else
                             {
-                                iDeletedData = deleteAtPosition(&pSecond, iPos);
+                                iDeletedData = deleteAtPosition(&pSecond, iPosition);
                                 display(pSecond);
                                 printf("Deleted data is : %d\n", iDeletedData);
                             }
@@ -805,7 +864,7 @@ int main()
                         break;
 
                     case 5:
-                        concatList(&pFirst, &pSecond);
+                        concatAtPosition(&pFirst, &pSecond, iPos);
                         display(pFirst);
                         goto out;
                         break;
@@ -820,158 +879,43 @@ int main()
                     printf("\nPlease enter only integer values. Non-integer values will cause errors in the program.\n");
                 }
             }
-            break;
-
-        case 12:
-            iCount = countNodes(pFirst);
-            printf("Enter the Position : \n");
-            scanf("%d", &iPos);
-
-            if (iPos < 1 || iPos > iCount + 1)
-            {
-                printf("\nERROR: Position is invalid.\n");
-            }
-            else
-            {
-                while (1)
-                {
-                    fflush(stdin);
-                    printf("\n1. Insert First\n2. Insert Last\n3. Insert At Position\n4. Delete At Position\n5. Back\n");
-                    printf(">_");
-                    iCheckData = scanf("%d", &iChoice);
-
-                    if (iCheckData != 0)
-                    {
-                        switch (iChoice)
-                        {
-                        case 1:
-                            printf("Enter the data : \n");
-                            iCheckData = scanf("%d", &iData);
-                            if (iCheckData != 0)
-                            {
-                                insertFirst(&pSecond, iData);
-                                display(pSecond);
-                            }
-                            else
-                            {
-                                printf("\nPlease enter only integer values. Non-integer values will cause errors in the program.\n");
-                            }
-                            break;
-
-                        case 2:
-                            printf("Enter the data : \n");
-                            iCheckData = scanf("%d", &iData);
-                            if (iCheckData != 0)
-                            {
-                                insertLast(&pSecond, iData);
-                                display(pSecond);
-                            }
-                            else
-                            {
-                                printf("\nPlease enter only integer values. Non-integer values will cause errors in the program.\n");
-                            }
-                            break;
-
-                        case 3:
-                            printf("Enter the Position : \n");
-                            scanf("%d", &iPosition);
-                            iCount = countNodes(pSecond);
-                            if (iPosition < 1 || iPosition > iCount + 1)
-                            {
-                                printf("\nERROR: Position is invalid.\n");
-                            }
-                            else
-                            {
-                                printf("Enter the data : \n");
-                                iCheckData = scanf("%d", &iData);
-                                if (iCheckData != 0)
-                                {
-                                    insertAtPosition(&pSecond, iData, iPosition);
-                                    display(pSecond);
-                                }
-                                else
-                                {
-                                    printf("\nPlease enter only integer values. Non-integer values will cause errors in the program.\n");
-                                }
-                            }
-                            break;
-
-                        case 4:
-                            if (pSecond == NULL)
-                            {
-                                printf("\nList is empty.\n");
-                            }
-                            else
-                            {
-                                printf("Enter the position : \n");
-                                scanf("%d", &iPosition);
-                                iCount = countNodes(pSecond);
-                                if (iPosition < 1 || iPosition > iCount)
-                                {
-                                    printf("\nERROR: Position is invalid.\n");
-                                }
-                                else
-                                {
-                                    iDeletedData = deleteAtPosition(&pSecond, iPosition);
-                                    display(pSecond);
-                                    printf("Deleted data is : %d\n", iDeletedData);
-                                }
-                            }
-                            break;
-
-                        case 5:
-                            concatAtPosition(&pFirst, &pSecond, iPos);
-                            display(pFirst);
-                            goto out;
-                            break;
-
-                        default:
-                            printf("\nERROR: Invalid option selected.\n");
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        printf("\nPlease enter only integer values. Non-integer values will cause errors in the program.\n");
-                    }
-                }
-            }
-            break;
-
-        case 13:
-            if (pFirst == NULL)
-            {
-                printf("\nList is empty.\n");
-            }
-            else
-            {
-                physicalReverse(&pFirst);
-                display(pFirst);
-            }
-            break;
-
-        case 14:
-            if (pFirst == NULL)
-            {
-                printf("\nList is empty.\n");
-            }
-            else
-            {
-                reverseDisplay(pFirst);
-            }
-            break;
-
-        case 15:
-            deleteAll(&pFirst);
-            pFirst = NULL;
-            printf("\nThank You for using our application !\n");
-            exit(0);
-            break;
-
-        default:
-            printf("\nERROR: Invalid option selected.\n");
-            break;
         }
+        break;
+
+    case 13:
+        if (pFirst == NULL)
+        {
+            printf("\nList is empty.\n");
+        }
+        else
+        {
+            physicalReverse(&pFirst);
+            display(pFirst);
+        }
+        break;
+
+    case 14:
+        if (pFirst == NULL)
+        {
+            printf("\nList is empty.\n");
+        }
+        else
+        {
+            reverseDisplay(pFirst);
+        }
+        break;
+
+    case 15:
+        deleteAll(&pFirst);
+        pFirst = NULL;
+        printf("\nThank You for using our application !\n");
+        exit(0);
+        break;
+
+    default:
+        printf("\nERROR: Invalid option selected.\n");
+        break;
     }
-    return 0;
+}
+return 0;
 }
