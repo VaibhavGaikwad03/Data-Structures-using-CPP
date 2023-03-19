@@ -541,58 +541,53 @@ int main()
         switch (iChoice)
         {
         case 1:
-            cout << "Enter the data : \n";
+            cout << "\nEnter the data : \n";
             cin >> iData;
 
             list1.insert_first(iData);
-            cout << "Data from the linked list : " << list1 << endl;
+            cout << "\nData from the linked list : " << list1 << endl;
 
             break;
 
         case 2:
-            cout << "Enter the data : \n";
+            cout << "\nEnter the data : \n";
             cout << iData;
 
             list1.insert_last(iData);
-            cout << "Data from the linked list : " << list1 << endl;
+            cout << "\nData from the linked list : " << list1 << endl;
 
             break;
 
         case 3:
-            printf("Enter the Position : \n");
-            scanf("%d", &iPos);
-            iCount = countNodes(pFirst);
+            cout << "\nEnter the Position : \n";
+            cin >> iPos;
+
+            iCount = list1.count_nodes();
+
             if (iPos < 1 || iPos > iCount + 1)
             {
-                printf("\nERROR: Position is invalid.\n");
+                cout << "\nERROR: Position is invalid.\n";
+                continue;
             }
-            else
-            {
-                printf("Enter the data : \n");
-                iCheckData = scanf("%d", &iData);
-                if (iCheckData != 0)
-                {
-                    insertAtPosition(&pFirst, iData, iPos);
-                    display(pFirst);
-                }
-                else
-                {
-                    printf("\nPlease enter only integer values. Non-integer values will cause errors in the program.\n");
-                }
-            }
+
+            cout << "\nEnter the data : \n";
+            cin >> iData;
+
+            list1.insert_at_position(iData, iPos);
+            cout << "\nData from the linked list : " << list1 << endl;
+
             break;
 
         case 4:
-            if (pFirst == NULL)
+            iDeletedData = list1.delete_first();
+            if (iDeletedData != -1)
             {
-                printf("\nList is empty.\n");
+                cout << "\nList is empty.\n";
+                continue;
             }
-            else
-            {
-                iDeletedData = deleteFirst(&pFirst);
-                display(pFirst);
-                printf("Deleted data is : %d\n", iDeletedData);
-            }
+            cout << "\nDeleted data is : " << iDeletedData << endl;
+            cout << "\nData from the linked list : " << list1 << endl;
+
             break;
 
         case 5:
