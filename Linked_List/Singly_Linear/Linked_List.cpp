@@ -514,7 +514,7 @@ ostream &operator<<(ostream &out, LinkedList &refObj)
     Node *pTemp = refObj.m_pHead;
 
     if (pTemp == NULL)
-        return;
+        return out;
 
     while (pTemp != NULL)
     {
@@ -580,6 +580,7 @@ int main()
 
         case 4:
             iDeletedData = list1.delete_first();
+            
             if (iDeletedData != -1)
             {
                 cout << "\nList is empty.\n";
@@ -591,16 +592,17 @@ int main()
             break;
 
         case 5:
-            if (pFirst == NULL)
+
+            iDeletedData = list1.delete_last();
+
+            if (iDeletedData != -1)
             {
-                printf("\nList is empty.\n");
+                cout << "\nList is empty.\n";
+                continue;
             }
-            else
-            {
-                iDeletedData = deleteLast(&pFirst);
-                display(pFirst);
-                printf("Deleted data is : %d\n", iDeletedData);
-            }
+            cout << "\nDeleted data is : " << iDeletedData << endl;
+            cout << "\nData from the linked list : " << list1 << endl;
+
             break;
 
         case 6:
