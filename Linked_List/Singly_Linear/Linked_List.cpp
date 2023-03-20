@@ -108,7 +108,7 @@ void LinkedList::display()
 
 bool LinkedList::is_empty()
 {
-    if(m_pHead == NULL)
+    if (m_pHead == NULL)
         return true;
     return false;
 }
@@ -610,74 +610,80 @@ int main()
             break;
 
         case 2:
-            bFlag = true;
-            while (bFlag)
+            if (!list1.is_empty())
             {
-                cout << "\nPlease choose from the below options : \n";
-                cout << "\n1. Delete First\n2. Delete Last\n3. Delete At Position\n4. Back\n>_";
-                cin >> iChoice;
-
-                switch (iChoice)
+                bFlag = true;
+                while (bFlag)
                 {
-                case 1:
-                    iDeletedData = list1.delete_first();
+                    cout << "\nPlease choose from the below options : \n";
+                    cout << "\n1. Delete First\n2. Delete Last\n3. Delete At Position\n4. Back\n>_";
+                    cin >> iChoice;
 
-                    if (iDeletedData == -1)
+                    switch (iChoice)
                     {
-                        cout << "\nList is empty.\n";
-                        continue;
+                    case 1:
+                        iDeletedData = list1.delete_first();
+
+                        if (iDeletedData == -1)
+                        {
+                            cout << "\nList is empty.\n";
+                            continue;
+                        }
+
+                        cout << "\nDeleted data is : " << iDeletedData;
+                        cout << "\nData from the linked list : \n"
+                             << list1 << endl;
+
+                        break;
+
+                    case 2:
+                        iDeletedData = list1.delete_last();
+
+                        if (iDeletedData == -1)
+                        {
+                            cout << "\nList is empty.\n";
+                            continue;
+                        }
+
+                        cout << "\nDeleted data is : " << iDeletedData;
+                        cout << "\nData from the linked list : \n"
+                             << list1 << endl;
+
+                        break;
+
+                    case 3:
+                        cout << "\nEnter the position : \n";
+                        cin >> iPos;
+
+                        iCount = list1.count_nodes();
+
+                        if (iPos < 1 || iPos > iCount)
+                        {
+                            cout << "\nERROR: Position is invalid.\n";
+                            continue;
+                        }
+
+                        iDeletedData = list1.delete_at_position(iPos);
+
+                        cout << "\nDeleted data is : " << iDeletedData;
+                        cout << "\nData from the linked list : \n"
+                             << list1 << endl;
+
+                        break;
+
+                    case 4:
+                        bFlag = false;
+                        break;
+
+                    default:
+                        cout << "\nERROR: Invalid option selected.\n";
+                        break;
                     }
-
-                    cout << "\nDeleted data is : " << iDeletedData;
-                    cout << "\nData from the linked list : \n"
-                         << list1 << endl;
-
-                    break;
-
-                case 2:
-                    iDeletedData = list1.delete_last();
-
-                    if (iDeletedData == -1)
-                    {
-                        cout << "\nList is empty.\n";
-                        continue;
-                    }
-
-                    cout << "\nDeleted data is : " << iDeletedData;
-                    cout << "\nData from the linked list : \n"
-                         << list1 << endl;
-
-                    break;
-
-                case 3:
-                    cout << "\nEnter the position : \n";
-                    cin >> iPos;
-
-                    iCount = list1.count_nodes();
-
-                    if (iPos < 1 || iPos > iCount)
-                    {
-                        cout << "\nERROR: Position is invalid.\n";
-                        continue;
-                    }
-
-                    iDeletedData = list1.delete_at_position(iPos);
-
-                    cout << "\nDeleted data is : " << iDeletedData;
-                    cout << "\nData from the linked list : \n"
-                         << list1 << endl;
-
-                    break;
-
-                case 4:
-                    bFlag = false;
-                    break;
-
-                default:
-                    cout << "\nERROR: Invalid option selected.\n";
-                    break;
                 }
             }
+            else
+                cout << "\nList is empty.\n";
+
             break;
 
         case 3:
@@ -742,49 +748,46 @@ int main()
             break;
 
         case 4:
-            if (pFirst != NULL)
+            if (!list1.is_empty())
             {
-                bFlag = TRUE;
+                bFlag = true;
                 while (bFlag)
                 {
-                    fflush(stdin);
-                    printf("\nPlease choose from the below options : \n\n");
-                    printf("1. Physical Reverse\n2. Display Reverse\n3. Back\n");
-                    printf(">_");
-                    iCheckData = scanf("%d", &iChoice);
+                    cout << "\nPlease choose from the below options : \n";
+                    cout << "\n1. Physical Reverse\n2. Display Reverse\n3. Back\n>_";
+                    cin >> iChoice;
 
-                    if (iCheckData != 0)
+                    switch (iChoice)
                     {
-                        switch (iChoice)
-                        {
-                        case 1:
-                            physicalReverse(&pFirst);
-                            display(pFirst);
-                            break;
+                    case 1:
+                        list1.physical_reverse();
+                        cout << "\nData from the linked list : \n"
+                             << list1 << endl;
 
-                        case 2:
-                            reverseDisplay(pFirst);
-                            break;
+                        break;
 
-                        case 3:
-                            bFlag = FALSE;
-                            break;
+                    case 2:
+                        list1.reverse_display();
+                        cout << "\nData from the linked list : \n"
+                             << list1 << endl;
 
-                        default:
-                            printf("\nERROR: Invalid option selected.\n");
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        printf("\nPlease enter only integer values. Non-integer values will cause errors in the program !\n");
+                        break;
+
+                    case 3:
+                        bFlag = false;
+
+                        break;
+
+                    default:
+                        cout << "\nERROR: Invalid option selected.\n";
+                        
+                        break;
                     }
                 }
             }
             else
-            {
-                printf("\nList is empty.\n");
-            }
+                cout << "\nList is empty.\n";
+
             break;
 
         case 5:
