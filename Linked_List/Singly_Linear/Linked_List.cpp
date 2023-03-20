@@ -631,7 +631,7 @@ int main()
                             continue;
                         }
 
-                        cout << "\nDeleted data is : " << iDeletedData;
+                        cout << "\nDeleted data is : " << iDeletedData << endl;
                         cout << "\nData from the linked list : \n"
                              << list1 << endl;
 
@@ -646,7 +646,7 @@ int main()
                             continue;
                         }
 
-                        cout << "\nDeleted data is : " << iDeletedData;
+                        cout << "\nDeleted data is : " << iDeletedData << endl;
                         cout << "\nData from the linked list : \n"
                              << list1 << endl;
 
@@ -666,7 +666,7 @@ int main()
 
                         iDeletedData = list1.delete_at_position(iPos);
 
-                        cout << "\nDeleted data is : " << iDeletedData;
+                        cout << "\nDeleted data is : " << iDeletedData << endl;
                         cout << "\nData from the linked list : \n"
                              << list1 << endl;
 
@@ -872,7 +872,7 @@ int main()
                                 }
 
                                 iDeletedData = list2.delete_at_position(iPos);
-                                cout << "\nDeleted data is : " << iDeletedData;
+                                cout << "\nDeleted data is : " << iDeletedData << endl;
                                 cout << "\nData from the linked list : \n"
                                      << list2 << endl;
                             }
@@ -974,7 +974,7 @@ int main()
                                 }
 
                                 iDeletedData = list2.delete_at_position(iPos);
-                                cout << "\nDeleted data is : " << iDeletedData;
+                                cout << "\nDeleted data is : " << iDeletedData << endl;
                                 cout << "\nData from the linked list : \n"
                                      << list2 << endl;
                             }
