@@ -29,6 +29,7 @@ public:
     ~LinkedList();
     int count_nodes();
     void display();
+    bool is_empty();
     void insert_first(int iNo);
     void insert_last(int iNo);
     void insert_at_position(int iNo, int iPos);
@@ -103,6 +104,13 @@ void LinkedList::display()
         pTemp = pTemp->m_pNext;
     }
     cout << "NULL\n";
+}
+
+bool LinkedList::is_empty()
+{
+    if(m_pHead == NULL)
+        return true;
+    return false;
 }
 
 void LinkedList::insert_first(int iNo)
@@ -642,136 +650,94 @@ int main()
                     break;
 
                 case 3:
-                    if (pFirst != NULL)
+                    cout << "\nEnter the position : \n";
+                    cin >> iPos;
+
+                    iCount = list1.count_nodes();
+
+                    if (iPos < 1 || iPos > iCount)
                     {
-                        printf("Enter the position : \n");
-                        scanf("%d", &iPos);
-                        iCount = countNodes(pFirst);
-                        if (iPos < 1 || iPos > iCount)
-                        {
-                            printf("\nERROR: Position is invalid.\n");
-                        }
-                        else
-                        {
-                            iDeletedData = deleteAtPosition(&pFirst, iPos);
-                            display(pFirst);
-                            if (iDeletedData != -1)
-                                printf("Deleted data is : %d\n", iDeletedData);
-                        }
+                        cout << "\nERROR: Position is invalid.\n";
+                        continue;
                     }
-                    else
-                    {
-                        printf("\nList is empty.\n");
-                    }
+
+                    iDeletedData = list1.delete_at_position(iPos);
+
+                    cout << "\nDeleted data is : " << iDeletedData;
+                    cout << "\nData from the linked list : \n"
+                         << list1 << endl;
+
                     break;
 
                 case 4:
-                    bFlag = FALSE;
+                    bFlag = false;
                     break;
 
                 default:
-                    printf("\nERROR: Invalid option selected.\n");
+                    cout << "\nERROR: Invalid option selected.\n";
                     break;
                 }
             }
             break;
 
         case 3:
-            if (pFirst != NULL)
+
+            bFlag = true;
+            while (bFlag)
             {
-                bFlag = TRUE;
-                while (bFlag)
+                cout << "\nPlease choose from the below options : \n";
+                cout << "\n1. Search First Occurrence\n2. Search Last Occurrence\n3. Search All Occurrences\n4. Back\n>_";
+                cin >> iChoice;
+
+                switch (iChoice)
                 {
-                    fflush(stdin);
-                    printf("\nPlease choose from the below options : \n\n");
-                    printf("1. Search First Occurrence\n2. Search Last Occurrence\n3. Search All Occurrences\n4. Back\n");
-                    printf(">_");
-                    iCheckData = scanf("%d", &iChoice);
+                case 1:
+                    cout << "\nPlease enter the data that you would like to search for :\n";
+                    cin >> iData;
 
-                    if (iCheckData != 0)
-                    {
-                        switch (iChoice)
-                        {
-                        case 1:
-                            printf("Please enter the data that you would like to search for :\n");
-                            iCheckData = scanf("%d", &iData);
+                    iOccurrence = list1.search_first_occurrence(iData);
 
-                            if (iCheckData != 0)
-                            {
-                                iOccurrence = searchFirstOccurrence(pFirst, iData);
-
-                                if (iOccurrence != 0)
-                                {
-                                    printf("\nFirst occurrence of %d is at position %d.\n", iData, iOccurrence);
-                                }
-                                else
-                                {
-                                    printf("\n%d not found.\n", iData);
-                                }
-                            }
-                            else
-                            {
-                                printf("\nPlease enter only integer values. Non-integer values will cause errors in the program.\n");
-                            }
-                            break;
-
-                        case 2:
-                            printf("Please enter the data that you would like to search for :\n");
-                            iCheckData = scanf("%d", &iData);
-
-                            if (iCheckData != 0)
-                            {
-                                iOccurrence = searchLastOccurrence(pFirst, iData);
-
-                                if (iOccurrence != 0)
-                                {
-                                    printf("\nLast occurrence of %d is at position %d\n", iData, iOccurrence);
-                                }
-                                else
-                                {
-                                    printf("\n%d not found.\n", iData);
-                                }
-                            }
-                            else
-                            {
-                                printf("\nPlease enter only integer values. Non-integer values will cause errors in the program.\n");
-                            }
-                            break;
-
-                        case 3:
-                            printf("Please enter the data that you would like to search for :\n");
-                            iCheckData = scanf("%d", &iData);
-
-                            if (iCheckData != 0)
-                            {
-                                iOccurrence = searchAllOccurrences(pFirst, iData);
-
-                                printf("\n%d Occurred %d times\n", iData, iOccurrence);
-                            }
-                            else
-                            {
-                                printf("\nPlease enter only integer values. Non-integer values will cause errors in the program.\n");
-                            }
-                            break;
-
-                        case 4:
-                            bFlag = FALSE;
-                            break;
-
-                        default:
-                            printf("\nERROR: Invalid option selected.\n");
-                            break;
-                        }
-                    }
+                    if (iOccurrence != 0)
+                        cout << "\nFirst occurrence of " << iData << " is at position " << iOccurrence << endl;
                     else
-                    {
-                        printf("\nPlease enter only integer values. Non-integer values will cause errors in the program !\n");
-                    }
+                        cout << endl
+                             << iData << " not found.\n";
+
+                    break;
+
+                case 2:
+                    cout << "\nPlease enter the data that you would like to search for :\n";
+                    cin >> iData;
+
+                    iOccurrence = list1.search_last_occurrence(iData);
+
+                    if (iOccurrence != 0)
+                        cout << "\nLast occurrence of " << iData << " is at position " << iOccurrence << endl;
+                    else
+                        cout << endl
+                             << iData << " not found.\n";
+
+                    break;
+
+                case 3:
+                    cout << "\nPlease enter the data that you would like to search for :\n";
+                    cin >> iData;
+
+                    iOccurrence = list1.search_all_occurrences(iData);
+
+                    cout << endl
+                         << iData << " Occurred " << iOccurrence << " times\n";
+
+                    break;
+
+                case 4:
+                    bFlag = false;
+                    break;
+
+                default:
+                    cout << "\nERROR: Invalid option selected.\n";
+                    break;
                 }
-            }
-            else
-            {
-                printf("\nList is empty.\n");
             }
             break;
 
