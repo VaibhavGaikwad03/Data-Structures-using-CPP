@@ -538,6 +538,7 @@ int main()
 {
     bool bFlag = false;
     LinkedList list1;
+    LinkedList list2;
     int iOccurrence = 0, iPosition;
     int iChoice = 0, iChoiceIn = 0, iData = 0, iCount = 0, iPos = 0, iDeletedData = 0;
 
@@ -797,7 +798,6 @@ int main()
             break;
 
         case 6:
-            LinkedList list2;
             bFlag = true;
             while (bFlag)
             {
@@ -1004,25 +1004,27 @@ int main()
 
                 case 3:
                     bFlag = false;
-                    
+
                     break;
 
                 default:
-                    printf("\nERROR: Invalid option selected.\n");
+                    cout << "\nERROR: Invalid option selected.\n";
+
                     break;
                 }
             }
             break;
 
         case 7:
-            deleteAll(&pFirst);
-            pFirst = NULL;
-            printf("\nThank You for using our application !\n");
+            list1.delete_all();
+            cout << "\nThank You for using our application !\n";
+
             exit(0);
             break;
 
         default:
-            printf("\nERROR: Invalid option selected.\n");
+            cout << "\nERROR: Invalid option selected.\n";
+
             break;
         }
     }
