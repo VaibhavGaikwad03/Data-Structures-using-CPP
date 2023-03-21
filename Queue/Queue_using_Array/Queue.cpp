@@ -1,7 +1,9 @@
 #include <iostream>
 #include <cstring>
+using std::cin;
 using std::cout;
 using std::endl;
+using std::ostream;
 #define MAX 10
 
 class Queue
@@ -19,6 +21,8 @@ public:
     bool is_queue_empty();
     void enqueue(int iNo);
     int dequeue();
+
+    friend ostream &operator<<(ostream &out, Queue &refObj);
 };
 
 Queue::Queue()
@@ -137,60 +141,93 @@ int Queue::dequeue()
     return iDelData;
 }
 
+ostream &operator<<(ostream &out, Queue &refObj)
+{
+    int iTempFront = refObj.m_iFront;
+    int iTempRear = refObj.m_iRear;
+
+    if (refObj.is_queue_empty())
+        return;
+
+    if (iTempFront > iTempRear)
+    {
+        while (iTempFront < MAX)
+        {
+            out << refObj.m_Queue[iTempFront];
+            iTempFront++;
+        }
+        iTempFront = 0;
+    }
+    while (iTempFront <= iTempRear)
+    {
+        out << refObj.m_Queue[iTempFront];
+        iTempFront++;
+    }
+    cout << endl;
+}
+
 int main(void)
 {
     Queue queue;
     bool bFlag = true;
     int iChoice = 0, iNo = 0, iRet = 0;
 
-
-    while(bFlag)
+    while (bFlag)
     {
         cout << "\nHello, Welcome...\nChoose from the below options :\n";
         cout << "\n1. EnQueue\n2. DeQueue\n3. Count Nodes\n4. Exit\n>_";
         cin >> iChoice;
 
-        switch(iChoice)
+        switch (iChoice)
         {
-            case 1:
-            
-                if(queue.is_queue_full())
-                    cout << "\nQueue is full.\n";
-                else
-                {
-                    printf("Enter the data : \n");
-                    scanf("%d", &iNo);
-                    enQueue(Queue, &iRear, iFront, iNo);
-                    display(Queue, iRear, iFront);
-                }   
-                break;
+        case 1:
 
-            case 2:
+            if (queue.is_queue_full())
+            {
+                cout << "\nQueue is full.\n";
+                continue;
+            }
 
-                iRet = deQueue(Queue, &iRear, &iFront);
-                if(iRet != -1)
-                    printf("\nDeleted data is : %d\n", iRet);
-                display(Queue, iRear, iFront);
-                break;
+            cout << "\nEnter the data : \n";
+            cin >> iNo;
+            queue.enqueue(iNo);
+            cout << "\nData from the queue is : \n"
+                 << queue << endl;
 
-            case 3:
+            break;
 
-                iRet = countNodes(Queue, iRear, iFront);
-                printf("\nCount of nodes is : %d\n", iRet);
-                break;
+        case 2:
 
-            case 4:
+            iRet = queue.dequeue();
+            if (iRet == -1)
+            {
+                cout << "\nQueue is empty.\n";
+                continue;
+            }
+            cout << "\nDeleted data is : " << iRet << endl;
+            cout << "\nData from the queue is : \n"
+                 << queue << endl;
 
-                bFlag = FALSE;
-                printf("\nThank You for using our application...\n");
-                break;
+            break;
 
-            default:
-            
-                printf("\nInvalid option selected.\n");
+        case 3:
+
+            iRet = queue.count_nodes();
+
+            cout << "\nCount of nodes is : " << iRet << endl;
+            break;
+
+        case 4:
+
+            bFlag = false;
+            cout << "\nThank You for using our application...\n";
+
+            break;
+
+        default:
+
+            cout << "\nInvalid option selected.\n";
         }
     }
-    return 0;   
-
     return 0;
 }
