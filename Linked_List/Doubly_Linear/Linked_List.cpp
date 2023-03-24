@@ -6,7 +6,7 @@ using std::ostream;
 
 class LinkedList;
 
-class Node
+class Node 
 {
     int m_iData;
     Node *m_pNext;
