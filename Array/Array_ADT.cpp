@@ -715,6 +715,8 @@ int main(void)
 
 			flag = true;
 			ret->display();
+			
+			break;
 
 		case 12:
 
