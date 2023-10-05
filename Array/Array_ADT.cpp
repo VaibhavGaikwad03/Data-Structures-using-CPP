@@ -493,9 +493,19 @@ int main(void)
 			break;
 
 		case 3:
+
+			cout << "Enter the data: ";
+			cin >> data;
+
+			obj1.insert_sort(data);
+			obj1.display();
+
 			break;
 
 		case 4:
+
+
+
 			break;
 
 		case 5:
