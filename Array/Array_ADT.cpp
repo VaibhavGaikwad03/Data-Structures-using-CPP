@@ -643,7 +643,78 @@ int main(void)
 			break;
 
 		case 11:
-			break;
+
+			while (flag)
+			{
+				cout << "\n1. Add Element\n2. Insert Element\n3. Insert in Sorted Oreder\n4. Delete Element\n5. Back and Display Difference\n>_";
+				cin >> choice;
+
+				switch (choice)
+				{
+				case 1:
+
+					cout << "\nEnter the data: ";
+					cin >> data;
+
+					obj2.add_element(data);
+					obj2.display();
+
+					break;
+
+				case 2:
+
+					cout << "\nEnter valid index: ";
+					cin >> index;
+
+					if (index > obj2.length())
+					{
+						cout << "\nIndex is invalid!\n";
+						continue;
+					}
+
+					cout << "Enter the data: ";
+					cin >> data;
+
+					obj2.insert_element(index, data);
+					obj2.display();
+
+					break;
+
+				case 3:
+
+					cout << "\nEnter the data: ";
+					cin >> data;
+
+					obj2.insert_sort(data);
+					obj2.display();
+
+					break;
+
+				case 4:
+
+					cout << "\nEnter valid index: ";
+					cin >> index;
+
+					if (index > obj2.length() - 1)
+					{
+						cout << "\nIndex is invalid!\n";
+						continue;
+					}
+
+					obj2.delete_element(index);
+					obj2.display();
+
+					break;
+
+				case 5:
+					flag = false;
+					ret = obj1.difference(obj2);
+					break;
+				}
+			}
+
+			flag = true;
+			ret->display();
 
 		case 12:
 			break;
