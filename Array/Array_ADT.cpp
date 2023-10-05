@@ -452,10 +452,11 @@ int main(void)
 	int data;
 	int index;
 	int choice;
+	bool flag = true;
 	Array obj1, obj2;
 	Array *ret = NULL;
 
-	while (1)
+	while (flag)
 	{
 		cout << "\n1. Add Element\n2. Insert Element\n3. Insert in Sorted Order\n4. Set Element\n5. Get Element\n";
 		cout << "6. Merge Array\n7. Find Min\n8. Find Max\n9. Rearrange\n10. Search Element\n11. Difference\n";
@@ -537,6 +538,80 @@ int main(void)
 			break;
 
 		case 6:
+
+			while (flag)
+			{
+				cout << "\n1. Add Element\n2. Insert Element\n3. Insert in Sorted Oreder\n4. Delete Element\n5. Back and Merge\n>_";
+				cin >> choice;
+
+				switch (choice)
+				{
+				case 1:
+
+					cout << "\nEnter the data: ";
+					cin >> data;
+
+					obj2.add_element(data);
+					obj2.display();
+
+					break;
+
+				case 2:
+
+					cout << "\nEnter valid index: ";
+					cin >> index;
+
+					if (index > obj2.length())
+					{
+						cout << "\nIndex is invalid!\n";
+						continue;
+					}
+
+					cout << "Enter the data: ";
+					cin >> data;
+
+					obj2.insert_element(index, data);
+					obj2.display();
+
+					break;
+
+				case 3:
+
+					cout << "\nEnter the data: ";
+					cin >> data;
+
+					obj2.insert_sort(data);
+					obj2.display();
+
+					break;
+
+				case 4:
+
+					cout << "\nEnter valid index: ";
+					cin >> index;
+
+					if (index > obj2.length() - 1)
+					{
+						cout << "\nIndex is invalid!\n";
+						continue;
+					}
+
+					obj2.delete_element(index);
+					obj2.display();
+
+					break;
+
+				case 5:
+					flag = false;
+					ret = obj1.merge(obj2);
+					break;
+				}
+			}
+
+			flag = true;
+			obj1 = *ret;
+			obj1.display();
+
 			break;
 		
 		case 7:
