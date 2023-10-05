@@ -615,15 +615,31 @@ int main(void)
 			break;
 		
 		case 7:
+
+			cout << "\nSmallest data from the array is: " << obj1.min() << endl;
+
 			break;
 
 		case 8:
+
+			cout << "\nBiggest data from the array is: " << obj1.max() << endl;
+
 			break;
 
 		case 9:
+
+			obj1.rearrange();
+			obj1.display();
+
 			break;
 
 		case 10:
+
+			cout << "\nEnter the key to search: ";
+			cin >> data;
+
+			cout << endl << data << " found at index " << obj1.search_element(data) << endl;
+
 			break;
 
 		case 11:
