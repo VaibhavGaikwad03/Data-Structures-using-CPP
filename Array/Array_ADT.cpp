@@ -869,13 +869,29 @@ int main(void)
 			break;
 
 		case 14:
+
+			cout << "Enter valid index: ";
+			cin >> index;
+
+			if (index > obj1.length() - 1)
+			{
+				cout << "\nIndex is invalid!\n";
+				continue;
+			}
+
+			obj1.delete_element(index);
+			obj1.display();
+
 			break;
 
 		case 15:
+
+			flag = false;
+
 			break;
 
 		default:
-			;
+			cout << "\nInvalid Choice.\n";
 		}
 	}
 
