@@ -475,7 +475,7 @@ int main(void)
 
 		case 2:
 
-			cout << "\nEnter the valid index: ";
+			cout << "\nEnter valid index: ";
 			cin >> index;
 
 			if (index > obj1.length())
@@ -494,7 +494,7 @@ int main(void)
 
 		case 3:
 
-			cout << "Enter the data: ";
+			cout << "\nEnter the data: ";
 			cin >> data;
 
 			obj1.insert_sort(data);
@@ -504,11 +504,36 @@ int main(void)
 
 		case 4:
 
+			cout << "\nEnter valid index: ";
+			cin >> index;
 
+			if (index > obj1.length() - 1)
+			{
+				cout << "\nIndex is invalid!\n";
+				continue;
+			}
+
+			cout << "\nEnter the data: ";
+			cin >> data;
+
+			obj1.set(index, data);
+			obj1.display();
 
 			break;
 
 		case 5:
+
+			cout << "\nEnter valid index: ";
+			cin >> index;
+
+			if (index > obj1.length() - 1)
+			{
+				cout << "\nIndex is invalid!\n";
+				continue;
+			}
+
+			cout << "\nElement at index: " << index << " is " << obj1.get(index) << endl;
+
 			break;
 
 		case 6:
