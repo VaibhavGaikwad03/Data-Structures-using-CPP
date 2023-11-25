@@ -17,9 +17,36 @@ class BST
 public:
     BST() : root(NULL) {}
     void insert(int key);
-    void r_insert(int key) { root = r_insert(root, key); };
+    node *search(int key);
     void inorder() { inorder(root); };
+    void r_insert(int key) { root = r_insert(root, key); };
 };
+
+void BST::inorder(node *r)
+{
+    if (r == NULL)
+        return;
+
+    inorder(r->left);
+    cout << r->data << " ";
+    inorder(r->right);
+}
+
+node *BST::search(int key)
+{
+    node *tmp = root;
+
+    while (tmp != NULL)
+    {
+        if (key < tmp->data)
+            tmp = tmp->left;
+        else if (key > tmp->data)
+            tmp = tmp->right;
+        else
+            return tmp;
+    }
+    return NULL;
+}
 
 void BST::insert(int key)
 {
@@ -80,16 +107,6 @@ node *BST::r_insert(node *r, int key)
     return r;
 }
 
-void BST::inorder(node *r)
-{
-    if (r == NULL)
-        return;
-
-    inorder(r->left);
-    cout << r->data << " ";
-    inorder(r->right);
-}
-
 int main(void)
 {
     BST bst;
@@ -102,6 +119,7 @@ int main(void)
     bst.r_insert(35);
     bst.r_insert(50);
     bst.inorder();
+    cout  << endl << bst.search(21)->data << endl;
 
     return 0;
 }
