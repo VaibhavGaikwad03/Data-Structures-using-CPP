@@ -186,9 +186,10 @@ node *BST::r_delete(node *r, int key)
         {
             q = in_succ(r->right);
             r->data = q->data;
-            r->right = dec
+            r->right = r_delete(r->right, q->data);
         }
     }
+    return r;
 }
 
 int main(void)
