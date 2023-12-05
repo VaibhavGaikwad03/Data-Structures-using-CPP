@@ -26,7 +26,7 @@ public:
     void inorder() { inorder(root); }
     node *r_search(int key) { return r_search(root, key); }
     void r_insert(int key) { root = r_insert(root, key); };
-    node *r_delete(int key) { r_delete(root, key); };
+    node *r_delete(int key) { return r_delete(root, key); };
     int height() { return height(root); };
 };
 
@@ -54,7 +54,7 @@ node *BST::in_succ(node *r)
     return r;
 }
 
-int BST::height()
+int BST::height(node *root)
 {
     int x, y;
 
@@ -206,6 +206,8 @@ int main(void)
     bst.inorder();
     cout << endl
          << bst.r_search(25)->data << endl;
+    bst.r_delete(30);
+    bst.inorder();
 
     return 0;
 }
