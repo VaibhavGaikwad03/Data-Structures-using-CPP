@@ -207,6 +207,7 @@ int main(void)
     cout << endl
          << bst.r_search(25)->data << endl;
     bst.r_delete(30);
+    bst.r_delete(10);
     bst.inorder();
 
     return 0;
