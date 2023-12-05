@@ -13,13 +13,19 @@ class BST
     node *root;
     void inorder(node *root);
     node *r_insert(node *root, int key);
+    node *r_search(node *root, int key);
+    node *r_delete(node *root, int key);
+    int height(node *root);
 
 public:
     BST() : root(NULL) {}
     void insert(int key);
     node *search(int key);
-    void inorder() { inorder(root); };
+    void inorder() { inorder(root); }
+    node *r_search(int key) { return r_search(root, key); }
     void r_insert(int key) { root = r_insert(root, key); };
+    node *r_delete(int key) { r_delete(root, key); };
+    int height() { return height(root); };
 };
 
 void BST::inorder(node *r)
@@ -30,6 +36,19 @@ void BST::inorder(node *r)
     inorder(r->left);
     cout << r->data << " ";
     inorder(r->right);
+}
+
+int BST::height()
+{
+    int x, y;
+
+    if (root == NULL)
+        return 0;
+
+    x = height(root->left);
+    y = height(root->right);
+
+    return x > y ? x + 1 : y + 1;
 }
 
 node *BST::search(int key)
@@ -46,6 +65,19 @@ node *BST::search(int key)
             return tmp;
     }
     return NULL;
+}
+
+node *BST::r_search(node *r, int key)
+{
+    if (r == NULL)
+        return NULL;
+
+    if (key < r->data)
+        return r_search(r->left, key);
+    else if (key > r->data)
+        return r_search(r->right, key);
+    else
+        return r;
 }
 
 void BST::insert(int key)
@@ -107,6 +139,31 @@ node *BST::r_insert(node *r, int key)
     return r;
 }
 
+node *BST::r_delete(node *r, int key)
+{
+    node *q = NULL;
+
+    if (r == NULL)
+        return NULL;
+
+    if (r->left == NULL && r->right == NULL)
+    {
+        if (r == root)
+            root = NULL;
+        delete r;
+        return NULL;
+    }
+
+    if (key < r->data)
+        r->left = r_delete(r->left, key);
+    else if (key > r->data)
+        r->right = r_delete(r->right, key);
+    else
+    {
+        if ()
+    }
+}
+
 int main(void)
 {
     BST bst;
@@ -119,7 +176,8 @@ int main(void)
     bst.r_insert(35);
     bst.r_insert(50);
     bst.inorder();
-    cout  << endl << bst.search(21)->data << endl;
+    cout << endl
+         << bst.r_search(25)->data << endl;
 
     return 0;
 }
