@@ -51,6 +51,7 @@ node *BST::in_succ(node *r)
 {
     while (r && r->left != NULL)
         r = r->right;
+    return r;
 }
 
 int BST::height()
@@ -177,7 +178,15 @@ node *BST::r_delete(node *r, int key)
     {
         if (height(r->left) > height(r->right))
         {
-            q = in_pre()
+            q = in_pre(r->left);
+            r->data = q->data;
+            r->left = r_delete(r->right, q->data);
+        }
+        else
+        {
+            q = in_succ(r->right);
+            r->data = q->data;
+            r->right = dec
         }
     }
 }
