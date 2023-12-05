@@ -16,6 +16,8 @@ class BST
     node *r_search(node *root, int key);
     node *r_delete(node *root, int key);
     int height(node *root);
+    node *in_pre(node *root);
+    node *in_succ(node *root);
 
 public:
     BST() : root(NULL) {}
@@ -36,6 +38,19 @@ void BST::inorder(node *r)
     inorder(r->left);
     cout << r->data << " ";
     inorder(r->right);
+}
+
+node *BST::in_pre(node *r)
+{
+    while (r && r->right != NULL)
+        r = r->right;
+    return r;
+}
+
+node *BST::in_succ(node *r)
+{
+    while (r && r->left != NULL)
+        r = r->right;
 }
 
 int BST::height()
@@ -160,7 +175,10 @@ node *BST::r_delete(node *r, int key)
         r->right = r_delete(r->right, key);
     else
     {
-        if ()
+        if (height(r->left) > height(r->right))
+        {
+            q = in_pre()
+        }
     }
 }
 
