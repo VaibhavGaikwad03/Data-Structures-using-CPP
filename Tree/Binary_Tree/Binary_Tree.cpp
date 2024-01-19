@@ -18,9 +18,9 @@ class BinaryTree
 public:
     BinaryTree() : root(nullptr) {}
     void create();
-    void preorder() const;
-    void inorder();
-    void postorder();
+    void preorder() { preorder(root); }
+    void inorder() { inorder(root); }
+    void postorder() { postorder(root); }
 
 private:
     void preorder(node *p);
@@ -81,15 +81,49 @@ void BinaryTree::create()
     }
 }
 
-void BinaryTree::preorder() const
+void BinaryTree::preorder(node *p)
 {
-    node *temp = root;
+    if (p)
+    {
+        cout << p->data << " ";
+        preorder(p->left);
+        preorder(p->right);
+    }
+}
+
+void BinaryTree::inorder(node *p)
+{
+    if (p)
+    {
+        inorder(p->left);
+        cout << p->data << " ";
+        inorder(p->right);
+    }
+}
+
+void BinaryTree::postorder(node *p)
+{
+    if (p)
+    {
+        postorder(p->left);
+        postorder(p->right);
+        cout << p->data << " ";
+    }
 }
 
 int main(void)
 {
     BinaryTree btree;
     btree.create();
+    cout << "Pre: ";
+    btree.preorder();
+    cout << endl;
+    cout << "In: ";
+    btree.inorder();
+    cout << endl;
+    cout << "Post: ";
+    btree.postorder();
+    cout << endl;
 
     return 0;
 }
