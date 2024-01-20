@@ -10,7 +10,7 @@ struct node
     int data;
     node *right;
 };
-
+ 
 class BinaryTree
 {
     node *root;
